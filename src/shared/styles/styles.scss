@@ -17,4 +17,8 @@ button {
   border: none;
   outline: none;
   background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -3,32 +3,21 @@ import { PlayIcon } from "@/shared/assets";
 import { useAction } from "@reatom/npm-react";
 import cn from "classnames";
 import s from "./style.module.scss";
+import { Fn } from "@reatom/framework";
 
 interface TrackListProps {
   trackList: Track[];
+  cell: (arg0: Track, arg1: Fn<[url: string], void>) => React.ReactNode;
 }
 
-export const TrackList = ({ trackList }: TrackListProps) => {
+export const TrackList = ({ trackList, cell }: TrackListProps) => {
   const playerControl = useAction(playerControlAction);
+
   return (
     <div>
       <div className={s.track_list__counter}>Найдено {trackList?.length}</div>
       <div className={s.track_list}>
-        {trackList?.map((el) => (
-          <button
-            onClick={() => playerControl(el.track_url)}
-            key={el.id}
-            className={cn(s.track_list__item)}
-          >
-            <div className={s.track_list__itemLeft}>
-              <div className={s.track_list__itemIcon}>
-                <PlayIcon />
-              </div>
-              <div className={s.track_list__itemName}>{el.track_id}</div>
-            </div>
-            <div className={s.track_list__itemAuthor}>{el.lead_id}</div>
-          </button>
-        ))}
+        {trackList?.map((el) => cell(el, playerControl))}
       </div>
     </div>
   );

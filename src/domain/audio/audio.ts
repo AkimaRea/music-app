@@ -2,6 +2,7 @@ import { instance } from "@/shared/api/instance";
 import { action, atom, onConnect, reatomAsync } from "@reatom/framework";
 import { RefObject } from "react";
 import { AudioPlayerRef } from "react-audio-play";
+import { userAtom } from "../user/user";
 
 export interface GetAllTracksDTO {
   audios: Track[];
@@ -27,12 +28,36 @@ export const getAllTracksAsync = reatomAsync(
   }
 );
 
-export const getFavouritesTracksAsync = reatomAsync(
-  async () => instance.post<GetAllTracksDTO>("/call/audio/favourites"),
+export const togglefavouriteAsync = reatomAsync(
+  async (ctx, track_id: string) => {
+    const tg_id = ctx.get(userAtom).id;
+    return instance.post("/call/favourites/toggle", {
+      script_request_params: {
+        tg_id: tg_id,
+        track_id: track_id,
+      },
+    });
+  },
   {
-    name: "getAllTracksAsync",
+    name: "togglefavouriteAsync",
+    onFulfill: (_ctx) => {
+      getFavouritesTracksAsync(_ctx);
+    },
+  }
+);
+
+export const getFavouritesTracksAsync = reatomAsync(
+  async (ctx) => {
+    const tg_id = ctx.get(userAtom).id;
+
+    return instance.post<GetAllTracksDTO>("/call/audio/favourites", {
+      script_request_params: { tg_id: tg_id },
+    });
+  },
+  {
+    name: "getFavouritesTracksAsync",
     onFulfill: (_ctx, { data }) => {
-      tracksAtom(_ctx, data.audios);
+      favouritesTracksAtom(_ctx, data.audios);
     },
   }
 );

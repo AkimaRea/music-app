@@ -6,6 +6,7 @@ export const instance = axios.create({
   }`,
   responseType: "json",
   timeout: 5000,
+  
   headers: {
     Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
   },
