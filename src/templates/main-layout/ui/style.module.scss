@@ -1,0 +1,28 @@
+.layout {
+  max-width: 954px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.track_list__player {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  
+  a {
+    color: var(--main-text);
+    text-decoration: none;
+    transition: .1s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+}

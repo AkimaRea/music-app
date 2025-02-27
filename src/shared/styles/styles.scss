@@ -1,0 +1,20 @@
+@import "./vars";
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-alt);
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  background: transparent;
+}

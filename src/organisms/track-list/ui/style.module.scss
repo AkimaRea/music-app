@@ -1,0 +1,78 @@
+.track_list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+
+  &__counter {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+
+    color: var(--main-text);
+  }
+
+  &__item {
+    background: var(--bg);
+    border-radius: 8px;
+    transition: 0.1s ease-in-out;
+    padding: 10px 24px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: scale(1.01);
+    }
+    
+    &.current {
+        border: 1px solid var(--secondary-text-alt);
+    }
+
+    &Left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &Icon {
+      width: 24px;
+      height: 24px;
+      svg {
+        width: inherit;
+        height: inherit;
+        * {
+          stroke: var(--main-text-alt);
+          stroke-width: 3px;
+        }
+      }
+    }
+
+    &Name {
+      text-transform: capitalize;
+    }
+
+    &Author,
+    &Name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 15px;
+      display: flex;
+      align-items: center;
+      color: #474747;
+    }
+  }
+}
