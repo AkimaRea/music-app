@@ -7,7 +7,7 @@ import { useAtom } from "@reatom/npm-react";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { launchParamsAtom } from "../domain/user/user";
 import { ToastContainer } from "react-toastify";
 
@@ -33,6 +33,10 @@ export const App = () => {
           <Route
             path={RouterPaths.FavouriteTracks}
             element={<FavouriteTracks />}
+          />
+          <Route
+            path="*"
+            element={<Navigate to="/" />}
           />
         </Routes>
       </BrowserRouter>

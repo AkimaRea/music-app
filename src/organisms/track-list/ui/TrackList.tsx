@@ -1,9 +1,7 @@
 import { playerControlAction, Track } from "@/domain/audio/audio";
-import { PlayIcon } from "@/shared/assets";
-import { useAction } from "@reatom/npm-react";
-import cn from "classnames";
-import s from "./style.module.scss";
 import { Fn } from "@reatom/framework";
+import { useAction } from "@reatom/npm-react";
+import s from "./style.module.scss";
 
 interface TrackListProps {
   trackList: Track[];
